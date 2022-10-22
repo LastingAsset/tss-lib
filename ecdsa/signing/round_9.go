@@ -9,8 +9,8 @@ package signing
 import (
 	"errors"
 
-	"github.com/bnb-chain/tss-lib/crypto/commitments"
-	"github.com/bnb-chain/tss-lib/tss"
+	"github.com/lastingasset/tss-lib/crypto/commitments"
+	"github.com/lastingasset/tss-lib/tss"
 )
 
 func (round *round9) Start() *tss.Error {
@@ -44,7 +44,7 @@ func (round *round9) Start() *tss.Error {
 		return round.WrapError(errors.New("U doesn't equal T"), round.PartyID())
 	}
 
-	r9msg := NewSignRound9Message(round.PartyID(), round.temp.si)
+	r9msg := NewSignRound9Message(round.PartyID(), round.temp.Si)
 	round.temp.signRound9Messages[round.PartyID().Index] = r9msg
 	round.out <- r9msg
 	return nil

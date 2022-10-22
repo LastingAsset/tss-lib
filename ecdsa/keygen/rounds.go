@@ -7,7 +7,7 @@
 package keygen
 
 import (
-	"github.com/bnb-chain/tss-lib/tss"
+	"github.com/lastingasset/tss-lib/tss"
 )
 
 const (

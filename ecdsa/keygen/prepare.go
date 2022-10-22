@@ -13,8 +13,8 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/bnb-chain/tss-lib/common"
-	"github.com/bnb-chain/tss-lib/crypto/paillier"
+	"github.com/lastingasset/tss-lib/common"
+	"github.com/lastingasset/tss-lib/crypto/paillier"
 )
 
 const (

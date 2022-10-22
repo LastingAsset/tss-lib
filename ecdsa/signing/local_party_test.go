@@ -18,10 +18,10 @@ import (
 	"github.com/ipfs/go-log"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/bnb-chain/tss-lib/common"
-	"github.com/bnb-chain/tss-lib/ecdsa/keygen"
-	"github.com/bnb-chain/tss-lib/test"
-	"github.com/bnb-chain/tss-lib/tss"
+	"github.com/lastingasset/tss-lib/common"
+	"github.com/lastingasset/tss-lib/ecdsa/keygen"
+	"github.com/lastingasset/tss-lib/test"
+	"github.com/lastingasset/tss-lib/tss"
 )
 
 const (
@@ -99,8 +99,8 @@ signing:
 			atomic.AddInt32(&ended, 1)
 			if atomic.LoadInt32(&ended) == int32(len(signPIDs)) {
 				t.Logf("Done. Received signature data from %d participants", ended)
-				R := parties[0].temp.bigR
-				r := parties[0].temp.rx
+				R := parties[0].Temp.BigR
+				r := parties[0].Temp.Rx
 				fmt.Printf("sign result: R(%s, %s), r=%s\n", R.X().String(), R.Y().String(), r.String())
 
 				modN := common.ModInt(tss.S256().Params().N)
@@ -108,7 +108,7 @@ signing:
 				// BEGIN check s correctness
 				sumS := big.NewInt(0)
 				for _, p := range parties {
-					sumS = modN.Add(sumS, p.temp.si)
+					sumS = modN.Add(sumS, p.Temp.Si)
 				}
 				fmt.Printf("S: %s\n", sumS.String())
 				// END check s correctness
@@ -207,8 +207,8 @@ signing:
 			atomic.AddInt32(&ended, 1)
 			if atomic.LoadInt32(&ended) == int32(len(signPIDs)) {
 				t.Logf("Done. Received signature data from %d participants", ended)
-				R := parties[0].temp.bigR
-				r := parties[0].temp.rx
+				R := parties[0].Temp.BigR
+				r := parties[0].Temp.Rx
 				fmt.Printf("sign result: R(%s, %s), r=%s\n", R.X().String(), R.Y().String(), r.String())
 
 				modN := common.ModInt(tss.S256().Params().N)
@@ -216,7 +216,7 @@ signing:
 				// BEGIN check s correctness
 				sumS := big.NewInt(0)
 				for _, p := range parties {
-					sumS = modN.Add(sumS, p.temp.si)
+					sumS = modN.Add(sumS, p.Temp.Si)
 				}
 				fmt.Printf("S: %s\n", sumS.String())
 				// END check s correctness

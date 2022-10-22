@@ -11,9 +11,9 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/bnb-chain/tss-lib/common"
-	"github.com/bnb-chain/tss-lib/crypto"
-	"github.com/bnb-chain/tss-lib/crypto/paillier"
+	"github.com/lastingasset/tss-lib/common"
+	"github.com/lastingasset/tss-lib/crypto"
+	"github.com/lastingasset/tss-lib/crypto/paillier"
 )
 
 func AliceInit(

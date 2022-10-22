@@ -12,7 +12,7 @@ import (
 
 	"github.com/agl/ed25519/edwards25519"
 
-	"github.com/bnb-chain/tss-lib/common"
+	"github.com/lastingasset/tss-lib/common"
 )
 
 func encodedBytesToBigInt(s *[32]byte) *big.Int {

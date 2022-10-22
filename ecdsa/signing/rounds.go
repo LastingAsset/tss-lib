@@ -7,9 +7,9 @@
 package signing
 
 import (
-	"github.com/bnb-chain/tss-lib/common"
-	"github.com/bnb-chain/tss-lib/ecdsa/keygen"
-	"github.com/bnb-chain/tss-lib/tss"
+	"github.com/lastingasset/tss-lib/common"
+	"github.com/lastingasset/tss-lib/ecdsa/keygen"
+	"github.com/lastingasset/tss-lib/tss"
 )
 
 const (
