@@ -10,12 +10,12 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/bnb-chain/tss-lib/common"
-	"github.com/bnb-chain/tss-lib/crypto"
-	cmts "github.com/bnb-chain/tss-lib/crypto/commitments"
-	"github.com/bnb-chain/tss-lib/crypto/dlnproof"
-	"github.com/bnb-chain/tss-lib/crypto/vss"
-	"github.com/bnb-chain/tss-lib/tss"
+	"github.com/lastingasset/tss-lib/common"
+	"github.com/lastingasset/tss-lib/crypto"
+	cmts "github.com/lastingasset/tss-lib/crypto/commitments"
+	"github.com/lastingasset/tss-lib/crypto/dlnproof"
+	"github.com/lastingasset/tss-lib/crypto/vss"
+	"github.com/lastingasset/tss-lib/tss"
 )
 
 var (

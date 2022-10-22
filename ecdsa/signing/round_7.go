@@ -12,10 +12,10 @@ import (
 
 	errors2 "github.com/pkg/errors"
 
-	"github.com/bnb-chain/tss-lib/common"
-	"github.com/bnb-chain/tss-lib/crypto"
-	"github.com/bnb-chain/tss-lib/crypto/commitments"
-	"github.com/bnb-chain/tss-lib/tss"
+	"github.com/lastingasset/tss-lib/common"
+	"github.com/lastingasset/tss-lib/crypto"
+	"github.com/lastingasset/tss-lib/crypto/commitments"
+	"github.com/lastingasset/tss-lib/tss"
 )
 
 func (round *round7) Start() *tss.Error {
@@ -56,7 +56,7 @@ func (round *round7) Start() *tss.Error {
 			return round.WrapError(errors.New("schnorr verify for Aj failed"), Pj)
 		}
 		pijV, err := r6msg.UnmarshalZKVProof(round.Params().EC())
-		if err != nil || !pijV.Verify(bigVj, round.temp.bigR) {
+		if err != nil || !pijV.Verify(bigVj, round.temp.BigR) {
 			return round.WrapError(errors.New("vverify for Vj failed"), Pj)
 		}
 	}
@@ -65,7 +65,7 @@ func (round *round7) Start() *tss.Error {
 	AX, AY := round.temp.bigAi.X(), round.temp.bigAi.Y()
 	minusM := modN.Sub(big.NewInt(0), round.temp.m)
 	gToMInvX, gToMInvY := round.Params().EC().ScalarBaseMult(minusM.Bytes())
-	minusR := modN.Sub(big.NewInt(0), round.temp.rx)
+	minusR := modN.Sub(big.NewInt(0), round.temp.Rx)
 	yToRInvX, yToRInvY := round.Params().EC().ScalarMult(round.key.ECDSAPub.X(), round.key.ECDSAPub.Y(), minusR.Bytes())
 	VX, VY := round.Params().EC().Add(gToMInvX, gToMInvY, yToRInvX, yToRInvY)
 	VX, VY = round.Params().EC().Add(VX, VY, round.temp.bigVi.X(), round.temp.bigVi.Y())

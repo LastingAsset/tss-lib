@@ -11,12 +11,12 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/bnb-chain/tss-lib/common"
-	"github.com/bnb-chain/tss-lib/crypto"
-	"github.com/bnb-chain/tss-lib/crypto/commitments"
-	"github.com/bnb-chain/tss-lib/crypto/mta"
-	"github.com/bnb-chain/tss-lib/ecdsa/keygen"
-	"github.com/bnb-chain/tss-lib/tss"
+	"github.com/lastingasset/tss-lib/common"
+	"github.com/lastingasset/tss-lib/crypto"
+	"github.com/lastingasset/tss-lib/crypto/commitments"
+	"github.com/lastingasset/tss-lib/crypto/mta"
+	"github.com/lastingasset/tss-lib/ecdsa/keygen"
+	"github.com/lastingasset/tss-lib/tss"
 )
 
 var (

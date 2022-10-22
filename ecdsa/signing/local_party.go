@@ -11,12 +11,12 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/bnb-chain/tss-lib/common"
-	"github.com/bnb-chain/tss-lib/crypto"
-	cmt "github.com/bnb-chain/tss-lib/crypto/commitments"
-	"github.com/bnb-chain/tss-lib/crypto/mta"
-	"github.com/bnb-chain/tss-lib/ecdsa/keygen"
-	"github.com/bnb-chain/tss-lib/tss"
+	"github.com/lastingasset/tss-lib/common"
+	"github.com/lastingasset/tss-lib/crypto"
+	cmt "github.com/lastingasset/tss-lib/crypto/commitments"
+	"github.com/lastingasset/tss-lib/crypto/mta"
+	"github.com/lastingasset/tss-lib/ecdsa/keygen"
+	"github.com/lastingasset/tss-lib/tss"
 )
 
 // Implements Party
@@ -30,7 +30,7 @@ type (
 		params *tss.Parameters
 
 		keys keygen.LocalPartySaveData
-		temp localTempData
+		Temp localTempData
 		data common.SignatureData
 
 		// outbound messaging
@@ -78,11 +78,11 @@ type (
 
 		// round 5
 		li,
-		si,
-		rx,
+		Si,
+		Rx,
 		ry,
 		roi *big.Int
-		bigR,
+		BigR,
 		bigAi,
 		bigVi *crypto.ECPoint
 		DPower cmt.HashDeCommitment
@@ -117,38 +117,38 @@ func NewLocalPartyWithKDD(
 		BaseParty: new(tss.BaseParty),
 		params:    params,
 		keys:      keygen.BuildLocalSaveDataSubset(key, params.Parties().IDs()),
-		temp:      localTempData{},
+		Temp:      localTempData{},
 		data:      common.SignatureData{},
 		out:       out,
 		end:       end,
 	}
 	// msgs init
-	p.temp.signRound1Message1s = make([]tss.ParsedMessage, partyCount)
-	p.temp.signRound1Message2s = make([]tss.ParsedMessage, partyCount)
-	p.temp.signRound2Messages = make([]tss.ParsedMessage, partyCount)
-	p.temp.signRound3Messages = make([]tss.ParsedMessage, partyCount)
-	p.temp.signRound4Messages = make([]tss.ParsedMessage, partyCount)
-	p.temp.signRound5Messages = make([]tss.ParsedMessage, partyCount)
-	p.temp.signRound6Messages = make([]tss.ParsedMessage, partyCount)
-	p.temp.signRound7Messages = make([]tss.ParsedMessage, partyCount)
-	p.temp.signRound8Messages = make([]tss.ParsedMessage, partyCount)
-	p.temp.signRound9Messages = make([]tss.ParsedMessage, partyCount)
+	p.Temp.signRound1Message1s = make([]tss.ParsedMessage, partyCount)
+	p.Temp.signRound1Message2s = make([]tss.ParsedMessage, partyCount)
+	p.Temp.signRound2Messages = make([]tss.ParsedMessage, partyCount)
+	p.Temp.signRound3Messages = make([]tss.ParsedMessage, partyCount)
+	p.Temp.signRound4Messages = make([]tss.ParsedMessage, partyCount)
+	p.Temp.signRound5Messages = make([]tss.ParsedMessage, partyCount)
+	p.Temp.signRound6Messages = make([]tss.ParsedMessage, partyCount)
+	p.Temp.signRound7Messages = make([]tss.ParsedMessage, partyCount)
+	p.Temp.signRound8Messages = make([]tss.ParsedMessage, partyCount)
+	p.Temp.signRound9Messages = make([]tss.ParsedMessage, partyCount)
 	// temp data init
-	p.temp.keyDerivationDelta = keyDerivationDelta
-	p.temp.m = msg
-	p.temp.cis = make([]*big.Int, partyCount)
-	p.temp.bigWs = make([]*crypto.ECPoint, partyCount)
-	p.temp.betas = make([]*big.Int, partyCount)
-	p.temp.c1jis = make([]*big.Int, partyCount)
-	p.temp.c2jis = make([]*big.Int, partyCount)
-	p.temp.pi1jis = make([]*mta.ProofBob, partyCount)
-	p.temp.pi2jis = make([]*mta.ProofBobWC, partyCount)
-	p.temp.vs = make([]*big.Int, partyCount)
+	p.Temp.keyDerivationDelta = keyDerivationDelta
+	p.Temp.m = msg
+	p.Temp.cis = make([]*big.Int, partyCount)
+	p.Temp.bigWs = make([]*crypto.ECPoint, partyCount)
+	p.Temp.betas = make([]*big.Int, partyCount)
+	p.Temp.c1jis = make([]*big.Int, partyCount)
+	p.Temp.c2jis = make([]*big.Int, partyCount)
+	p.Temp.pi1jis = make([]*mta.ProofBob, partyCount)
+	p.Temp.pi2jis = make([]*mta.ProofBobWC, partyCount)
+	p.Temp.vs = make([]*big.Int, partyCount)
 	return p
 }
 
 func (p *LocalParty) FirstRound() tss.Round {
-	return newRound1(p.params, &p.keys, &p.data, &p.temp, p.out, p.end)
+	return newRound1(p.params, &p.keys, &p.data, &p.Temp, p.out, p.end)
 }
 
 func (p *LocalParty) Start() *tss.Error {
@@ -199,25 +199,25 @@ func (p *LocalParty) StoreMessage(msg tss.ParsedMessage) (bool, *tss.Error) {
 	// this does not handle message replays. we expect the caller to apply replay and spoofing protection.
 	switch msg.Content().(type) {
 	case *SignRound1Message1:
-		p.temp.signRound1Message1s[fromPIdx] = msg
+		p.Temp.signRound1Message1s[fromPIdx] = msg
 	case *SignRound1Message2:
-		p.temp.signRound1Message2s[fromPIdx] = msg
+		p.Temp.signRound1Message2s[fromPIdx] = msg
 	case *SignRound2Message:
-		p.temp.signRound2Messages[fromPIdx] = msg
+		p.Temp.signRound2Messages[fromPIdx] = msg
 	case *SignRound3Message:
-		p.temp.signRound3Messages[fromPIdx] = msg
+		p.Temp.signRound3Messages[fromPIdx] = msg
 	case *SignRound4Message:
-		p.temp.signRound4Messages[fromPIdx] = msg
+		p.Temp.signRound4Messages[fromPIdx] = msg
 	case *SignRound5Message:
-		p.temp.signRound5Messages[fromPIdx] = msg
+		p.Temp.signRound5Messages[fromPIdx] = msg
 	case *SignRound6Message:
-		p.temp.signRound6Messages[fromPIdx] = msg
+		p.Temp.signRound6Messages[fromPIdx] = msg
 	case *SignRound7Message:
-		p.temp.signRound7Messages[fromPIdx] = msg
+		p.Temp.signRound7Messages[fromPIdx] = msg
 	case *SignRound8Message:
-		p.temp.signRound8Messages[fromPIdx] = msg
+		p.Temp.signRound8Messages[fromPIdx] = msg
 	case *SignRound9Message:
-		p.temp.signRound9Messages[fromPIdx] = msg
+		p.Temp.signRound9Messages[fromPIdx] = msg
 	default: // unrecognised message, just ignore!
 		common.Logger.Warningf("unrecognised message ignored: %v", msg)
 		return false, nil

@@ -7,10 +7,10 @@ import (
 	"crypto/elliptic"
 	"math/big"
 
-	"github.com/bnb-chain/tss-lib/common"
-	"github.com/bnb-chain/tss-lib/crypto"
-	"github.com/bnb-chain/tss-lib/crypto/ckd"
-	"github.com/bnb-chain/tss-lib/ecdsa/keygen"
+	"github.com/lastingasset/tss-lib/common"
+	"github.com/lastingasset/tss-lib/crypto"
+	"github.com/lastingasset/tss-lib/crypto/ckd"
+	"github.com/lastingasset/tss-lib/ecdsa/keygen"
 
 	"github.com/btcsuite/btcd/chaincfg"
 )

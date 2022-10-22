@@ -11,8 +11,8 @@ import (
 
 	errors2 "github.com/pkg/errors"
 
-	"github.com/bnb-chain/tss-lib/crypto/schnorr"
-	"github.com/bnb-chain/tss-lib/tss"
+	"github.com/lastingasset/tss-lib/crypto/schnorr"
+	"github.com/lastingasset/tss-lib/tss"
 )
 
 func (round *round6) Start() *tss.Error {
@@ -27,7 +27,7 @@ func (round *round6) Start() *tss.Error {
 	if err != nil {
 		return round.WrapError(errors2.Wrapf(err, "NewZKProof(roi, bigAi)"))
 	}
-	piV, err := schnorr.NewZKVProof(round.temp.bigVi, round.temp.bigR, round.temp.si, round.temp.li)
+	piV, err := schnorr.NewZKVProof(round.temp.bigVi, round.temp.BigR, round.temp.Si, round.temp.li)
 	if err != nil {
 		return round.WrapError(errors2.Wrapf(err, "NewZKVProof(bigVi, bigR, si, li)"))
 	}

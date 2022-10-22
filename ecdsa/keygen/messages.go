@@ -9,12 +9,12 @@ package keygen
 import (
 	"math/big"
 
-	"github.com/bnb-chain/tss-lib/common"
-	cmt "github.com/bnb-chain/tss-lib/crypto/commitments"
-	"github.com/bnb-chain/tss-lib/crypto/dlnproof"
-	"github.com/bnb-chain/tss-lib/crypto/paillier"
-	"github.com/bnb-chain/tss-lib/crypto/vss"
-	"github.com/bnb-chain/tss-lib/tss"
+	"github.com/lastingasset/tss-lib/common"
+	cmt "github.com/lastingasset/tss-lib/crypto/commitments"
+	"github.com/lastingasset/tss-lib/crypto/dlnproof"
+	"github.com/lastingasset/tss-lib/crypto/paillier"
+	"github.com/lastingasset/tss-lib/crypto/vss"
+	"github.com/lastingasset/tss-lib/tss"
 )
 
 // These messages were generated from Protocol Buffers definitions into ecdsa-keygen.pb.go

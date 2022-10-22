@@ -11,10 +11,10 @@ import (
 
 	errors2 "github.com/pkg/errors"
 
-	"github.com/bnb-chain/tss-lib/common"
-	"github.com/bnb-chain/tss-lib/crypto"
-	"github.com/bnb-chain/tss-lib/crypto/commitments"
-	"github.com/bnb-chain/tss-lib/tss"
+	"github.com/lastingasset/tss-lib/common"
+	"github.com/lastingasset/tss-lib/crypto"
+	"github.com/lastingasset/tss-lib/crypto/commitments"
+	"github.com/lastingasset/tss-lib/tss"
 )
 
 func (round *round5) Start() *tss.Error {
@@ -87,10 +87,10 @@ func (round *round5) Start() *tss.Error {
 	round.temp.bigVi = bigVi
 	round.temp.roi = roI
 	round.temp.DPower = cmt.D
-	round.temp.si = si
-	round.temp.rx = rx
+	round.temp.Si = si
+	round.temp.Rx = rx
 	round.temp.ry = ry
-	round.temp.bigR = R
+	round.temp.BigR = R
 
 	return nil
 }
